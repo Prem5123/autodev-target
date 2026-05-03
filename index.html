@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scribe - Clinical Notes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Login View -->
+        <div id="login-view" class="view">
+            <div class="login-container">
+                <h1>Scribe</h1>
+                <p class="subtitle">Clinical Notes System</p>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    <p id="login-error" class="error hidden"></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main View -->
+        <div id="main-view" class="view hidden">
+            <header class="header">
+                <div class="header-content">
+                    <h1>Scribe</h1>
+                    <div class="header-actions">
+                        <button id="new-note-btn" class="btn btn-primary">+ New Note</button>
+                        <button id="logout-btn" class="btn btn-secondary">Logout</button>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content">
+                <!-- Notes List -->
+                <section class="notes-section">
+                    <h2>Notes</h2>
+                    <div id="notes-list" class="notes-list">
+                        <p class="empty-state">No notes yet. Create your first note.</p>
+                    </div>
+                </section>
+
+                <!-- Note Editor -->
+                <section id="note-editor" class="editor-section hidden">
+                    <div class="editor-header">
+                        <h2 id="editor-title">New Note</h2>
+                        <button id="close-editor-btn" class="btn-close">&times;</button>
+                    </div>
+                    <form id="note-form">
+                        <input type="hidden" id="note-id">
+
+                        <div class="form-group">
+                            <label for="note-title">Title</label>
+                            <input type="text" id="note-title" name="title" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="note-template">Template</label>
+                            <select id="note-template" name="template">
+                                <option value="SOAP">SOAP Note</option>
+                                <option value="SIMPLE">Simple Note</option>
+                            </select>
+                        </div>
+
+                        <div id="soap-fields" class="soap-fields">
+                            <div class="soap-section">
+                                <label for="soap-subjective">S - Subjective</label>
+                                <textarea id="soap-subjective" name="subjective" rows="3" placeholder="Patient's description of symptoms, concerns, and history..."></textarea>
+                            </div>
+                            <div class="soap-section">
+                                <label for="soap-objective">O - Objective</label>
+                                <textarea id="soap-objective" name="objective" rows="3" placeholder="Observable findings, vital signs, examination results..."></textarea>
+                            </div>
+                            <div class="soap-section">
+                                <label for="soap-assessment">A - Assessment</label>
+                                <textarea id="soap-assessment" name="assessment" rows="3" placeholder="Diagnosis, differential diagnoses, clinical impressions..."></textarea>
+                            </div>
+                            <div class="soap-section">
+                                <label for="soap-plan">P - Plan</label>
+                                <textarea id="soap-plan" name="plan" rows="3" placeholder="Treatment plan, medications, follow-up instructions..."></textarea>
+                            </div>
+                        </div>
+
+                        <div id="simple-field" class="form-group hidden">
+                            <label for="note-content">Content</label>
+                            <textarea id="note-content" name="content" rows="10" placeholder="Note content..."></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" id="cancel-btn" class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Note</button>
+                        </div>
+                        <button type="button" id="delete-note-btn" class="btn btn-danger hidden">Delete Note</button>
+                    </form>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
