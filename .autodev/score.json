@@ -1,0 +1,31 @@
+{
+  "cycle_n": 1,
+  "rubric_version": 1,
+  "anchors": [
+    {"id": "1.0", "pass": true, "evidence": "README.md lines 22-42: install deps (go mod tidy), run app (go run main.go), access UI (http://localhost:8080)"},
+    {"id": "2.0", "pass": true, "evidence": "index.html + app.js + styles.css served by http.FileServer(http.Dir(.)) on :8080 (main.go:38)"},
+    {"id": "3.0", "pass": true, "evidence": "api/handler.go RegisterRoutes: GET/POST /api/notes, GET/PUT/DELETE /api/notes/"},
+    {"id": "4.0", "pass": true, "evidence": "notes/storage.go FileStorage persists to notes.json; Close() called on shutdown (main.go:18)"},
+    {"id": "5.0", "pass": true, "evidence": "api/handler.go:111-120 listNotes returns []Note with id,title,content,template,created_at from storage.GetAll()"},
+    {"id": "5.1", "pass": true, "evidence": "api/handler.go:122-144 createNote uses uuid.New().String() for id (notes/service.go:35), returns StatusCreated with note object"},
+    {"id": "5.2", "pass": true, "evidence": "api/handler.go:146-165 getNote returns note or 404 via noteService.Get(id)"},
+    {"id": "5.3", "pass": true, "evidence": "api/handler.go:167-200 updateNote calls noteService.Update and returns updated note"},
+    {"id": "5.4", "pass": true, "evidence": "api/handler.go:202-216 deleteNote returns 204 No Content after service.Delete"},
+    {"id": "6.0", "pass": true, "evidence": "app.js:122-132 loadNotes() fetches and renders list; openNewNote() opens editor; handleNoteSave calls createNote"},
+    {"id": "6.1", "pass": true, "evidence": "app.js:211-236 openNote(id) loads existing note into editor; handleNoteSave:309 calls updateNote when currentEditId is set"},
+    {"id": "6.2", "pass": true, "evidence": "index.html:74-91 SOAP fields (Subjective, Objective, Assessment, Plan); app.js:32-35 maps to soap-subjective/objective/assessment/plan"},
+    {"id": "7.0", "pass": true, "evidence": "auth/auth.go LoginHandler/LogoutHandler; api/handler.go:50-58 authMiddleware returns 401 when not authenticated"},
+    {"id": "8.0", "pass": true, "evidence": "api/handler.go:129-133 checks both empty and returns 400; handler_test.go:326-337 tests this case"},
+    {"id": "8.1", "pass": true, "evidence": "api/handler.go:147-151 checks non-numeric id with strconv.Atoi+isValidUUID, returns 404; handler_test.go:184-194 tests it"},
+    {"id": "8.2", "pass": true, "evidence": "api/handler.go:209-213 deleteNote returns 404 on service.Delete error; handler_test.go:307-317 tests non-existent delete"},
+    {"id": "8.3", "pass": true, "evidence": "api/handler.go:180-184 checks req.ID != id and returns 400; handler_test.go:253-265 tests mismatched id"},
+    {"id": "9.0", "pass": true, "evidence": "go test ./... exits 0; api package tests pass (0.483s)"},
+    {"id": "9.1", "pass": true, "evidence": "api/handler_test.go:68-132 TestCreateAndListNote covers POST creates and GET lists"},
+    {"id": "9.2", "pass": true, "evidence": "api/handler_test.go:172-182 (GET 404 non-existent), :307-317 (DELETE 404 non-existent)"},
+    {"id": "10.0", "pass": true, "evidence": "api/handler_test.go:214-251 TestUpdateNote verifies PUT updates and GET after confirms persistence"},
+    {"id": "11.0", "pass": true, "evidence": "No busy-wait or sleep in any handler; FileStorage uses sync.RWMutex for concurrency, no blocking I/O in request path"},
+    {"id": "12.0", "pass": true, "evidence": "FileStorage.GetAll() returns pre-loaded map values (O(n) in-memory iteration, no disk I/O per request); persist() only called on writes, not reads"}
+  ],
+  "score": 100,
+  "notes": "All 22 anchors pass. API CRUD, SOAP UI, auth guards, edge cases, tests, and efficiency requirements all satisfied."
+}
