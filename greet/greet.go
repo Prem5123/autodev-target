@@ -3,5 +3,8 @@ package greet
 
 // Goodbye returns a farewell message for the given name.
 func Goodbye(name string) string {
+	if name == "" {
+		return "Goodbye, friend!"
+	}
 	return "Goodbye, " + name + "!"
 }
