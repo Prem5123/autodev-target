@@ -1,0 +1,67 @@
+{
+  "issue_id": "99aaf37c-7ac8-4492-ab29-4b82a1db5216",
+  "version": 1,
+  "scores": [
+    {
+      "anchor_id": "1.0",
+      "pass": true,
+      "note": "greet/greet.go exports func Goodbye(name string) string"
+    },
+    {
+      "anchor_id": "2.0",
+      "pass": true,
+      "note": "Goodbye(\"\") returns \"Goodbye, friend!\""
+    },
+    {
+      "anchor_id": "2.1",
+      "pass": true,
+      "note": "Goodbye(\"Alice\") returns \"Goodbye, Alice!\""
+    },
+    {
+      "anchor_id": "2.2",
+      "pass": true,
+      "note": "Goodbye(\"Bob\") returns \"Goodbye, Bob!\""
+    },
+    {
+      "anchor_id": "3.0",
+      "pass": true,
+      "note": "Return ends with single exclamation mark"
+    },
+    {
+      "anchor_id": "4.0",
+      "pass": true,
+      "note": "Empty string returns \"Goodbye, friend!\""
+    },
+    {
+      "anchor_id": "5.0",
+      "pass": true,
+      "note": "TestGoodbye exists and is discovered by go test"
+    },
+    {
+      "anchor_id": "5.1",
+      "pass": true,
+      "note": "TestGoodbye covers empty-name case with exact string match"
+    },
+    {
+      "anchor_id": "5.2",
+      "pass": true,
+      "note": "TestGoodbye covers non-empty-name case with exact string match"
+    },
+    {
+      "anchor_id": "6.0",
+      "pass": true,
+      "note": "go test ./greet/... exits with code 0"
+    },
+    {
+      "anchor_id": "7.0",
+      "pass": true,
+      "note": "README.md line 16 documents Goodbye function"
+    },
+    {
+      "anchor_id": "8.0",
+      "pass": true,
+      "note": "O(1) — simple conditional with string concat, no loops/recursion"
+    }
+  ],
+  "total_score": 100
+}
