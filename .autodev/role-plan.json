@@ -1,10 +1,14 @@
 {
-  "issue_id": "75eb6a43-9422-4c25-aa27-05cad9fdc036",
+  "issue_id": "99aaf37c-7ac8-4492-ab29-4b82a1db5216",
   "version": 1,
   "roles": [
     {
       "role": "backend-dev",
-      "scope": "Implement Farewell(string) string in greet/greet.go, add greet/greet_test.go with both empty and non-empty name test cases, and update README.md to document the new function"
+      "scope": "Implement Goodbye(string) string in greet/greet.go and update README.md to document the new function"
+    },
+    {
+      "role": "tester",
+      "scope": "Write greet/greet_test.go with TestGoodbye covering both empty-name (\"\") returning \"Goodbye, friend!\" and non-empty-name cases, and verify `go test ./greet/...` passes"
     }
   ]
 }
