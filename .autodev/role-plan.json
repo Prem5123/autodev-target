@@ -1,0 +1,10 @@
+{
+  "issue_id": "75eb6a43-9422-4c25-aa27-05cad9fdc036",
+  "version": 1,
+  "roles": [
+    {
+      "role": "backend-dev",
+      "scope": "Implement Farewell(string) string in greet/greet.go, add greet/greet_test.go with both empty and non-empty name test cases, and update README.md to document the new function"
+    }
+  ]
+}

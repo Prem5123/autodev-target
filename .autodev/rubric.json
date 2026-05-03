@@ -1,0 +1,72 @@
+{
+  "issue_id": "75eb6a43-9422-4c25-aa27-05cad9fdc036",
+  "version": 1,
+  "anchors": [
+    {
+      "id": "1.0",
+      "category": "structural_compliance",
+      "weight": 1,
+      "assertion": "greet/greet.go defines and exports exactly one function named Farewell with signature func(string) string"
+    },
+    {
+      "id": "2.0",
+      "category": "functionality",
+      "weight": 2,
+      "assertion": "Farewell(\"\") returns exactly \"Goodbye, friend.\""
+    },
+    {
+      "id": "2.1",
+      "category": "functionality",
+      "weight": 2,
+      "assertion": "Farewell(\"Alice\") returns exactly \"Goodbye, Alice.\""
+    },
+    {
+      "id": "3.0",
+      "category": "functionality",
+      "weight": 1,
+      "assertion": "Farewell(\"Bob\") returns exactly \"Goodbye, Bob.\""
+    },
+    {
+      "id": "4.0",
+      "category": "edge_cases",
+      "weight": 1,
+      "assertion": "Farewell returns \"Goodbye, friend.\" when name is the empty string, not a whitespace or other default"
+    },
+    {
+      "id": "5.0",
+      "category": "tests",
+      "weight": 2,
+      "assertion": "greet/greet_test.go exists and contains a test function TestFarewell that is executed by `go test`"
+    },
+    {
+      "id": "5.1",
+      "category": "tests",
+      "weight": 1,
+      "assertion": "TestFarewell covers the empty-name case and asserts the returned string equals \"Goodbye, friend.\""
+    },
+    {
+      "id": "5.2",
+      "category": "tests",
+      "weight": 1,
+      "assertion": "TestFarewell covers the non-empty-name case and asserts the returned string equals \"Goodbye, <name>.\""
+    },
+    {
+      "id": "6.0",
+      "category": "tests",
+      "weight": 1,
+      "assertion": "`go test ./greet/...` exits with code 0 (all tests pass)"
+    },
+    {
+      "id": "7.0",
+      "category": "structural_compliance",
+      "weight": 1,
+      "assertion": "README.md contains a line documenting the Farewell function with its signature and behavior"
+    },
+    {
+      "id": "8.0",
+      "category": "efficiency",
+      "weight": 1,
+      "assertion": "Farewell contains no loops, recursion, or blocking operations; it is O(1)"
+    }
+  ]
+}
