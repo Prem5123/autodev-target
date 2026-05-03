@@ -13,4 +13,5 @@ a production codebase.
 
 - `go.mod` — Go module
 - `greet/` — sample package agents will be asked to extend
+  - `Goodbye(name string) string` — returns a farewell message
 - `.autodev/` — created by agents per cycle (rubric.json, role-plan.json, score.json)
