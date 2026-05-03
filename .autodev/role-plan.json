@@ -1,14 +1,18 @@
 {
-  "issue_id": "99aaf37c-7ac8-4492-ab29-4b82a1db5216",
+  "issue_id": "b8bafee3-aaee-4416-8978-06cf14905779",
   "version": 1,
   "roles": [
     {
       "role": "backend-dev",
-      "scope": "Implement Goodbye(string) string in greet/greet.go and update README.md to document the new function"
+      "scope": "Implement a Go web server with REST API (/api/notes CRUD), basic authentication, data persistence, and a README with run instructions"
+    },
+    {
+      "role": "frontend-dev",
+      "scope": "Build a web UI served by the app that lists notes, allows creating/editing notes with a SOAP template, and integrates with the backend API"
     },
     {
       "role": "tester",
-      "scope": "Write greet/greet_test.go with TestGoodbye covering both empty-name (\"\") returning \"Goodbye, friend!\" and non-empty-name cases, and verify `go test ./greet/...` passes"
+      "scope": "Write tests covering API CRUD operations, 404/400 error cases, and verify `go test ./...` passes"
     }
   ]
 }

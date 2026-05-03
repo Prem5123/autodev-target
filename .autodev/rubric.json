@@ -1,78 +1,144 @@
 {
-  "issue_id": "99aaf37c-7ac8-4492-ab29-4b82a1db5216",
+  "issue_id": "b8bafee3-aaee-4416-8978-06cf14905779",
   "version": 1,
   "anchors": [
     {
       "id": "1.0",
       "category": "structural_compliance",
       "weight": 1,
-      "assertion": "greet/greet.go defines and exports exactly one function named Goodbye with signature func(string) string"
+      "assertion": "Project root contains a README.md with instructions to install dependencies, run the app, and access the UI"
     },
     {
       "id": "2.0",
-      "category": "functionality",
-      "weight": 2,
-      "assertion": "Goodbye(\"\") returns exactly \"Goodbye, friend!\""
-    },
-    {
-      "id": "2.1",
-      "category": "functionality",
-      "weight": 2,
-      "assertion": "Goodbye(\"Alice\") returns exactly \"Goodbye, Alice!\""
-    },
-    {
-      "id": "2.2",
-      "category": "functionality",
+      "category": "structural_compliance",
       "weight": 1,
-      "assertion": "Goodbye(\"Bob\") returns exactly \"Goodbye, Bob!\""
+      "assertion": "Project contains a web frontend (HTML/JS or SPA framework) served by the app on the default HTTP port"
     },
     {
       "id": "3.0",
-      "category": "functionality",
+      "category": "structural_compliance",
       "weight": 1,
-      "assertion": "Return string ends with a single exclamation mark for non-empty name, not a period or other character"
+      "assertion": "Backend exposes RESTful API endpoints under /api/ prefix for note operations (create, read, update, delete, list)"
     },
     {
       "id": "4.0",
-      "category": "edge_cases",
+      "category": "structural_compliance",
       "weight": 1,
-      "assertion": "Goodbye returns \"Goodbye, friend!\" when name is the empty string \"\", not whitespace or any other default"
+      "assertion": "Data persistence is implemented (file-based, SQLite, or any database); notes survive app restart"
     },
     {
       "id": "5.0",
-      "category": "tests",
+      "category": "functionality",
       "weight": 2,
-      "assertion": "greet/greet_test.go exists and contains a test function TestGoodbye that is discovered and executed by `go test`"
+      "assertion": "GET /api/notes returns a JSON array of all saved notes with id, title, content, template, and created_at fields"
     },
     {
       "id": "5.1",
-      "category": "tests",
-      "weight": 1,
-      "assertion": "TestGoodbye covers the empty-name case and asserts the returned string exactly equals \"Goodbye, friend!\""
+      "category": "functionality",
+      "weight": 2,
+      "assertion": "POST /api/notes creates a new note and returns the created note object with a non-empty id"
     },
     {
       "id": "5.2",
-      "category": "tests",
-      "weight": 1,
-      "assertion": "TestGoodbye covers the non-empty-name case and asserts the returned string exactly equals \"Goodbye, <name>!\""
+      "category": "functionality",
+      "weight": 2,
+      "assertion": "GET /api/notes/:id returns the note with the given id, or 404 if not found"
+    },
+    {
+      "id": "5.3",
+      "category": "functionality",
+      "weight": 2,
+      "assertion": "PUT /api/notes/:id updates an existing note and returns the updated note"
+    },
+    {
+      "id": "5.4",
+      "category": "functionality",
+      "weight": 2,
+      "assertion": "DELETE /api/notes/:id removes the note and returns 204 No Content"
     },
     {
       "id": "6.0",
-      "category": "tests",
+      "category": "functionality",
+      "weight": 2,
+      "assertion": "The UI displays a list of saved notes and allows creating a new note"
+    },
+    {
+      "id": "6.1",
+      "category": "functionality",
+      "weight": 2,
+      "assertion": "The UI allows editing an existing note and saving changes via the API"
+    },
+    {
+      "id": "6.2",
+      "category": "functionality",
       "weight": 1,
-      "assertion": "`go test ./greet/...` exits with code 0 (all tests pass)"
+      "assertion": "The UI includes a SOAP note template pre-populated in the note editor (Subjective, Objective, Assessment, Plan sections)"
     },
     {
       "id": "7.0",
-      "category": "structural_compliance",
-      "weight": 1,
-      "assertion": "README.md contains a line documenting the Goodbye function with its signature and behavior"
+      "category": "functionality",
+      "weight": 2,
+      "assertion": "Basic authentication is implemented (login/logout) and unauthenticated requests to /api/notes return 401"
     },
     {
       "id": "8.0",
+      "category": "edge_cases",
+      "weight": 1,
+      "assertion": "POST /api/notes with empty title and empty content returns 400 Bad Request, not 200"
+    },
+    {
+      "id": "8.1",
+      "category": "edge_cases",
+      "weight": 1,
+      "assertion": "GET /api/notes/:id with non-numeric id returns 404 Not Found (not 500)"
+    },
+    {
+      "id": "8.2",
+      "category": "edge_cases",
+      "weight": 1,
+      "assertion": "DELETE /api/notes/:id for a non-existent id returns 404 Not Found"
+    },
+    {
+      "id": "8.3",
+      "category": "edge_cases",
+      "weight": 1,
+      "assertion": "PUT /api/notes/:id with mismatched URL id and body id returns 400 Bad Request"
+    },
+    {
+      "id": "9.0",
+      "category": "tests",
+      "weight": 2,
+      "assertion": "A test suite exists and `go test ./...` or equivalent runs without errors (exit code 0)"
+    },
+    {
+      "id": "9.1",
+      "category": "tests",
+      "weight": 2,
+      "assertion": "Tests cover POST /api/notes creating a note and GET /api/notes listing it"
+    },
+    {
+      "id": "9.2",
+      "category": "tests",
+      "weight": 1,
+      "assertion": "Tests cover 404 responses for GET /api/notes/:id with non-existent id and DELETE /api/notes/:id with non-existent id"
+    },
+    {
+      "id": "10.0",
+      "category": "tests",
+      "weight": 1,
+      "assertion": "Tests cover PUT /api/notes/:id updating a note and verifying the update persisted"
+    },
+    {
+      "id": "11.0",
       "category": "efficiency",
       "weight": 1,
-      "assertion": "Goodbye contains no loops, recursion, or blocking operations; it is O(1)"
+      "assertion": "No busy-wait loops or blocking sleep in request handlers; responses complete within 100ms under normal load"
+    },
+    {
+      "id": "12.0",
+      "category": "efficiency",
+      "weight": 1,
+      "assertion": "Note listing and creation do not scan or load all notes into memory for each request (applicable only if >100 notes)"
     }
   ]
 }
